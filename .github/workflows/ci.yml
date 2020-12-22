@@ -12,7 +12,11 @@ jobs:
       - name: Install
         id: install
         run: |
+          sudo add-apt-repository ppa:oibaf/graphics-drivers
           sudo apt-get update
           sudo apt-get full-upgrade -y
-          sudo apt-get autoremove -y
-          sudo apt-get install -y xorg openbox mesa-utils
+          sudo apt-get install -y mesa-utils
+      - name: Status
+        uses: GabrielBB/xvfb-action@v1
+        with:
+          run: glxinfo -B
